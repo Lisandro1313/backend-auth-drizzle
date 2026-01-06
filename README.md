@@ -1,6 +1,22 @@
 # Microservicio Autenticación (Drizzle ORM)
 
+![Node.js](https://img.shields.io/badge/Node.js-16+-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)
+![Express](https://img.shields.io/badge/Express-4.18-blue)
+![Drizzle](https://img.shields.io/badge/Drizzle-0.33-purple)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue)
+![JWT](https://img.shields.io/badge/JWT-9.0-red)
+
 Microservicio de autenticación con JWT utilizando Node.js, Express, TypeScript y Drizzle ORM con PostgreSQL.
+
+## 🚀 Características
+
+- ✅ Registro de usuarios con validación
+- ✅ Login con JWT (24h de duración)
+- ✅ Hash de contraseñas con bcrypt
+- ✅ Endpoint protegido /auth/me
+- ✅ TypeScript para type safety
+- ✅ Migraciones con Drizzle
 
 ## Requisitos
 
