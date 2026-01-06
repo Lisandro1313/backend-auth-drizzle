@@ -1,0 +1,103 @@
+{
+  "info": {
+    "name": "Microservicio Autenticación - Drizzle",
+    "description": "Colección de endpoints para el microservicio de autenticación",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Registrar Usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"usuario@example.com\",\n  \"password\": \"password123\",\n  \"nombre\": \"Juan Pérez\",\n  \"rol\": \"usuario\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/auth/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Iniciar Sesión",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"usuario@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Obtener Info Usuario Autenticado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "description": "Reemplazar {{token}} con el token JWT obtenido en login"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3002/auth/me",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Registrar Admin",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\",\n  \"nombre\": \"Administrador\",\n  \"rol\": \"admin\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3002/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["auth", "register"]
+        }
+      }
+    }
+  ]
+}
