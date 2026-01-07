@@ -1,19 +1,28 @@
 import { Pool } from 'pg';
 import 'dotenv/config';
 
-const pool = new Pool({
-  host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT) || 5432,
-  database: process.env.DB_NAME || 'finanzas_db',
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
-});
+const pool = new Pool(
+  process.env.DATABASE_URL
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+          rejectUnauthorized: false
+        }
+      }
+    : {
+        host: process.env.DB_HOST || 'localhost',
+        port: Number(process.env.DB_PORT) || 5432,
+        database: process.env.DB_NAME || 'finanzas_db',
+        user: process.env.DB_USER || 'postgres',
+        password: process.env.DB_PASSWORD || 'postgres',
+      }
+);
 
 async function migrate() {
   const client = await pool.connect();
   
   try {
-    console.log('Ejecutando migraciones...');
+    console.log('🔄 Ejecutando migraciones...');
     
     await client.query(`
       CREATE TABLE IF NOT EXISTS usuarios (
@@ -27,9 +36,10 @@ async function migrate() {
       );
     `);
     
-    console.log('Migraciones completadas exitosamente');
+    console.log('✅ Tabla usuarios verificada/creada');
+    console.log('✅ Migraciones completadas exitosamente');
   } catch (error) {
-    console.error('Error ejecutando migraciones:', error);
+    console.error('❌ Error ejecutando migraciones:', error);
   } finally {
     client.release();
     await pool.end();
