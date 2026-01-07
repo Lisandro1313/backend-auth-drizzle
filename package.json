@@ -4,9 +4,9 @@
   "description": "Microservicio de Autenticación con Drizzle ORM",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "npm run migrate && node dist/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc && npm run migrate",
+    "build": "tsc",
     "migrate": "tsx src/db/migrate.ts",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate"
